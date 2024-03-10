@@ -1,0 +1,64 @@
+.message-container {
+    width: 420px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 7rem 2rem 2rem 2rem;
+    animation: showup 1s ease-out;
+}
+
+.check-mark {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    background-color: blueviolet;
+}
+
+.check-mark > h1 {
+    color: var(--white);
+    font-size: 3rem;   
+}
+
+.thank-you {
+    margin-bottom: 1rem;
+    color: var( --very-dark-violet);
+}
+
+.advise-note {
+    font-size: 1.1rem;
+    color: var( --very-dark-violet);
+    margin-bottom: 2.5rem;
+}
+
+.button-continue {
+    width: 100%;
+    background: var(--very-dark-violet);
+    color: var(--white);
+    padding: 15px;
+    border-radius: 7px;
+    margin-top: 10px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  @keyframes showup {
+    from {
+        transform: translateX(600px);
+    }
+    to {
+        transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .message-container {
+        width: 350px;
+    }
+  }

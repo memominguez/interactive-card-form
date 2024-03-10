@@ -1,0 +1,90 @@
+
+.form-container {
+    width: 420px;
+    height: 480px;
+    margin-inline: auto;
+    padding: 7rem 1rem 2rem 5rem;   
+  }
+
+  .input-group1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  input {
+    height: 2.3rem;
+    padding: 7px;
+    border: 1px solid var(--dark-grayish-violet);   
+    border-radius: 7px;
+    outline: none;   
+    background: transparent;
+    font-size: 1rem;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+input[type=text]:focus {
+  border: 2px solid var(--very-dark-violet) 
+}
+
+.input.error {
+  border: 2px solid var(--red);
+}
+  
+  label {  
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  #card-name {  
+    width: 100%;
+  }
+  
+  #card-num {  
+    width: 100%;
+  }
+  
+  .input-group2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: first baseline;
+    margin-bottom: 2rem;
+  }
+  
+  #month,
+  #year {
+    width: 4.5rem;
+    text-align: center;
+  }
+  
+  #cvc {
+    width: 8rem;
+  }
+  
+  .button-confirm {
+    width: 100%;
+    background: var(--very-dark-violet);
+    color: var(--white);
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .err-msg {
+    display: block;
+    color: var(--red);
+    font-size: 0.8rem;
+    font-weight: 700;   
+  }
+  
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 7rem 1rem 2rem 4rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .form-container {
+      width: 350px;
+      padding: 6rem 1rem 2rem 1rem;
+    }
+  }
+  
