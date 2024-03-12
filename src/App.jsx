@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className="container">
-      <div className="frame-side">
+      <aside className="frame-side">
         <div className="card-front">
           <img src={cardLogo} alt="card logo" className="front-card-logo" />
           <h1 className="card-number">{enteredValues.cardNum}</h1>
@@ -33,9 +33,9 @@ function App() {
         <div className="card-back">
           <p className="cv-code">{enteredValues.cvc}</p>
         </div>
-      </div>
+      </aside>
 
-      <div className="form-side">
+      <main className="form-side">
         {formPass ? (
           <Success
             setFormPass={setFormPass}
@@ -49,7 +49,7 @@ function App() {
             setFormPass={setFormPass}
           />
         )}
-      </div>
+      </main>
     </div>
   );
 }

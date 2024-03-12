@@ -74,7 +74,7 @@ export default function CardForm({
   }
 
   return (
-    <main className="form-container">
+    <section className="form-container">
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div className="input-group1">
           <label htmlFor="card-name">CARD HOLDER NAME</label>
@@ -162,6 +162,6 @@ export default function CardForm({
           Confirm
         </button>
       </form>
-    </main>
+    </section>
   );
 }

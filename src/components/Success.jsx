@@ -16,7 +16,7 @@ export default function Success({ setFormPass, setEnteredValues }) {
   }
 
   return (
-    <div className="message-container">
+    <section className="message-container">
       <div className="check-mark">
         <h1>&#10003;</h1>
       </div>
@@ -26,6 +26,6 @@ export default function Success({ setFormPass, setEnteredValues }) {
       <button className="button-continue" onClick={resetForm}>
         Continue
       </button>
-    </div>
+    </section>
   );
 }
