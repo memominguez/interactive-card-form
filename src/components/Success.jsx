@@ -2,7 +2,12 @@
 /* eslint-disable react/prop-types */
 import "./success.css";
 
-export default function Success({ setFormPass, setEnteredValues }) {
+export default function Success({
+  setFormPass,
+  setEnteredValues,
+  setFocusStatus,
+  setTouched,
+}) {
   function resetForm() {
     setEnteredValues({
       cardName: "",
@@ -13,6 +18,22 @@ export default function Success({ setFormPass, setEnteredValues }) {
     });
 
     setFormPass(false);
+
+    setFocusStatus({
+      numField: false,
+      nameField: false,
+      monthField: false,
+      yearField: false,
+      cvcField: false,
+    });
+
+    setTouched({
+      numField: false,
+      nameField: false,
+      monthField: false,
+      yearField: false,
+      cvcField: false,
+    });
   }
 
   return (

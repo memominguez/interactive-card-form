@@ -7,22 +7,44 @@ import "./cardform.css";
 export default function CardForm({
   enteredValues,
   setEnteredValues,
-  formPass,
   setFormPass,
+  focusStatus,
+  setFocusStatus,
+  setTouched,
 }) {
   const [errors, setErrors] = useState({});
 
   function handleInputChange(identifier, value) {
+    setErrors({});
     setEnteredValues((prevValues) => ({
       ...prevValues,
       [identifier]: value,
     }));
   }
 
+  const handleFocus = (inputName) => {
+    setFocusStatus((prevFocusStatus) => ({
+      ...prevFocusStatus,
+      [inputName]: true,
+    }));
+
+    setTouched((prevTouched) => ({
+      ...prevTouched,
+      [inputName]: true,
+    }));
+  };
+
+  const handleBlur = (inputName) => {
+    setFocusStatus((prevFocusStatus) => ({
+      ...prevFocusStatus,
+      [inputName]: false,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate inputs
+    // Validate inputs sequence
     const validationErrors = {};
 
     // Validate name
@@ -31,12 +53,12 @@ export default function CardForm({
     }
 
     // Validate card number
-    let trimNum = enteredValues.cardNum.trim()
+    let trimNum = enteredValues.cardNum.trim();
     let numNospaces = enteredValues.cardNum.replace(/\s+/g, "");
     let numValid = isStringAllNumbers(numNospaces);
     if (trimNum.length < 16 || numValid === false) {
-        validationErrors.cardNum = "Please enter a valid card number";
-    }   
+      validationErrors.cardNum = "Please enter a valid card number";
+    }
 
     // Validate month
     if (!enteredValues.month.trim()) {
@@ -55,6 +77,7 @@ export default function CardForm({
 
     setErrors(validationErrors);
 
+    // No errors, pass!! otherwise not-pass!!
     if (Object.keys(validationErrors).length === 0) {
       setFormPass(true);
     } else {
@@ -84,12 +107,14 @@ export default function CardForm({
             id="card-name"
             className={errors.cardName ? "input error" : "input"}
             placeholder="e.g. Jane Appleseed"
+            onFocus={() => handleFocus("nameField")}
+            onBlur={() => handleBlur("nameField")}
             onChange={(event) =>
               handleInputChange("cardName", event.target.value)
             }
             value={enteredValues.cardName}
           />
-          {errors.cardName && (
+          {errors.cardName && !focusStatus.nameField && (
             <span className="err-msg">{errors.cardName}</span>
           )}
         </div>
@@ -102,15 +127,18 @@ export default function CardForm({
             className={errors.cardNum ? "input error" : "input"}
             placeholder="e.g. 1234 5678 9123 0000"
             options={{ blocks: [4, 4, 4, 4] }}
+            onFocus={() => handleFocus("numField")}
+            onBlur={() => handleBlur("numField")}
             onChange={(event) =>
               handleInputChange("cardNum", event.target.value)
             }
             value={enteredValues.cardNum}
           />
-          {errors.cardNum && <span className="err-msg">{errors.cardNum}</span>}
+          {errors.cardNum && !focusStatus.numField && (
+            <span className="err-msg">{errors.cardNum}</span>
+          )}
         </div>
 
-          
         <div className="input-group2">
           <div>
             <label htmlFor="month">Exp Month</label>
@@ -120,27 +148,35 @@ export default function CardForm({
               id="month"
               className={errors.month ? "input error" : "input"}
               placeholder="MM"
+              onFocus={() => handleFocus("monthField")}
+              onBlur={() => handleBlur("monthField")}
               onChange={(event) =>
                 handleInputChange("month", event.target.value)
               }
               value={enteredValues.month}
             />
-            {errors.month && <span className="err-msg">{errors.month}</span>}
+            {errors.month && !focusStatus.monthField && (
+              <span className="err-msg">{errors.month}</span>
+            )}
           </div>
           <div>
-          <label htmlFor="year">Exp Year</label>
+            <label htmlFor="year">Exp Year</label>
             <input
               type="text"
               name="year"
               id="year"
               className={errors.year ? "input error" : "input"}
               placeholder="YY"
+              onFocus={() => handleFocus("yearField")}
+              onBlur={() => handleBlur("yearField")}
               onChange={(event) =>
                 handleInputChange("year", event.target.value)
               }
               value={enteredValues.year}
             />
-            {errors.year && <span className="err-msg">{errors.year}</span>}
+            {errors.year && !focusStatus.yearField && (
+              <span className="err-msg">{errors.year}</span>
+            )}
           </div>
           <div>
             <label htmlFor="cvc">CVC</label>
@@ -151,10 +187,14 @@ export default function CardForm({
               id="cvc"
               className={errors.cvc ? "input error" : "input"}
               placeholder="e.g. 123"
+              onFocus={() => handleFocus("cvcField")}
+              onBlur={() => handleBlur("cvcField")}
               onChange={(event) => handleInputChange("cvc", event.target.value)}
               value={enteredValues.cvc}
             />
-            {errors.cvc && <span className="err-msg">{errors.cvc}</span>}
+            {errors.cvc && !focusStatus.cvcField && (
+              <span className="err-msg">{errors.cvc}</span>
+            )}
           </div>
         </div>
 
